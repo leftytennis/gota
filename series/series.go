@@ -5,6 +5,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"time"
 
 	"math"
 
@@ -83,6 +84,13 @@ type boolElements []boolElement
 func (e boolElements) Len() int           { return len(e) }
 func (e boolElements) Elem(i int) Element { return &e[i] }
 
+
+// dateTimeElements is the concrete implementation of Elements for DateTime elements.
+type dateTimeElements []dateTimeElement
+
+func (e dateTimeElements) Len() int           { return len(e) }
+func (e dateTimeElements) Elem(i int) Element { return &e[i] }
+
 // ElementValue represents the value that can be used for marshaling or
 // unmarshaling Elements.
 type ElementValue interface{}
@@ -118,6 +126,7 @@ const (
 	Int    Type = "int"
 	Float  Type = "float"
 	Bool   Type = "bool"
+	DateTime Type = "datetime"
 )
 
 // Indexes represent the elements that can be used for selecting a subset of
@@ -148,6 +157,8 @@ func New(values interface{}, t Type, name string) Series {
 			ret.elements = make(floatElements, n)
 		case Bool:
 			ret.elements = make(boolElements, n)
+		case DateTime:
+			ret.elements = make(dateTimeElements, n)
 		default:
 			panic(fmt.Sprintf("unknown type %v", t))
 		}
@@ -179,6 +190,12 @@ func New(values interface{}, t Type, name string) Series {
 			ret.elements.Elem(i).Set(v[i])
 		}
 	case []bool:
+		l := len(v)
+		preAlloc(l)
+		for i := 0; i < l; i++ {
+			ret.elements.Elem(i).Set(v[i])
+		}
+	case []time.Time:
 		l := len(v)
 		preAlloc(l)
 		for i := 0; i < l; i++ {
@@ -229,6 +246,11 @@ func Floats(values interface{}) Series {
 // Bools is a constructor for a Bool Series
 func Bools(values interface{}) Series {
 	return New(values, Bool, "")
+}
+
+// DateTimes is a constructor for a DateTime Series
+func DateTimes(values interface{}) Series {
+	return New(values, DateTime, "")
 }
 
 // Empty returns an empty Series of the same type

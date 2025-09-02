@@ -67,7 +67,7 @@ func (e dateTimeElement) IsNA() bool {
 }
 
 func (e dateTimeElement) Type() Type {
-	return Int
+	return DateTime
 }
 
 func (e dateTimeElement) Val() ElementValue {
@@ -81,7 +81,7 @@ func (e dateTimeElement) String() string {
 	if e.IsNA() {
 		return "NaN"
 	}
-	return fmt.Sprint(e.e)
+	return fmt.Sprintf("%s", e.e.Format(time.RFC3339))
 }
 
 func (e dateTimeElement) Int() (int, error) {

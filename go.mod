@@ -1,4 +1,4 @@
-module github.com/go-gota/gota
+module github.com/leftytennis/gota
 
 go 1.16
 

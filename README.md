@@ -1,7 +1,7 @@
 Gota: DataFrames, Series and Data Wrangling for Go
 ==================================================
 
-Meet us on Slack: Slack: [gophers.slack.com](https://gophers.slack.com) #go-gota ([invite](https://gophersinvite.herokuapp.com/))
+Meet us on Slack: Slack: [gophers.slack.com](https://gophers.slack.com) #leftytennis ([invite](https://gophersinvite.herokuapp.com/))
 
 This is an implementation of DataFrames, Series and data wrangling
 methods for the Go programming language. The API is still in flux so
@@ -440,6 +440,6 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 
 [1]: https://github.com/gonum
-[2]: https://github.com/go-gota/gota
-[3]: https://godoc.org/github.com/go-gota/gota/dataframe
-[4]: https://godoc.org/github.com/go-gota/gota/series
+[2]: https://github.com/leftytennis/gota
+[3]: https://godoc.org/github.com/leftytennis/gota/dataframe
+[4]: https://godoc.org/github.com/leftytennis/gota/series
